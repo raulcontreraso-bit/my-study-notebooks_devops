@@ -17,7 +17,9 @@
     "outputDir": "jupyterlite_github_sync/labextension"
   },
   "scripts": {
-    "build": "tsc --build",
+    "build": "jlpm build:lib && jlpm build:labextension",
+    "build:lib": "tsc --build",
+    "build:labextension": "jupyter labextension build .",
     "clean": "tsc --build --clean"
   },
   "dependencies": {
@@ -27,6 +29,7 @@
     "@lumino/disposable": "^2.0.0"
   },
   "devDependencies": {
+    "@jupyterlab/builder": "^4.0.0",
     "typescript": "~5.0.0"
   }
 }
