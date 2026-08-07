@@ -1,3 +1,16 @@
+JupyterLite (browser)
+        |
+        | POST notebook JSON
+        v
+Cloudflare Worker
+        |
+        | GitHub API
+        v
+GitHub Repository
+
+
+
+
 # Architecture
 
 ## Current
