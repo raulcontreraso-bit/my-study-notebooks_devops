@@ -1,5 +1,7 @@
-async function saveNotebookToGithub(filename, notebook) {
-
+window.saveNotebookToGithub = async function (
+  filename,
+  notebook
+) {
   const response = await fetch(
     "https://jupyterlite-sync.raulcontreraso.workers.dev/save-notebook",
     {
@@ -8,13 +10,11 @@ async function saveNotebookToGithub(filename, notebook) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        filename,
+        filename: filename,
         content: notebook
       })
     }
   );
 
   return await response.json();
-}
-
-window.saveNotebookToGithub = saveNotebookToGithub;
+};
