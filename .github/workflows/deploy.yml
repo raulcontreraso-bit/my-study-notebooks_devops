@@ -46,6 +46,7 @@ jobs:
           cd extension
           npm install
           npm run build
+          jupyter labextension build .
           python -m build --wheel
           pip install dist/*.whl
 
