@@ -72,6 +72,7 @@ jupyterlab-geojson>=3.4.0,<4
 
 
 
+
 ###
 # Core modules (mandatory)
 jupyterlite-core==0.8.0
@@ -145,9 +146,10 @@ jupyterlab-fasta>=3.3.0,<4
 jupyterlab-geojson>=3.4.0,<4
 
 
-############333
+
 
 jupyterlite-core>=0.3.0
 jupyterlite-pyodide-kernel
 jupyterlab>=4.0.0
+
 
