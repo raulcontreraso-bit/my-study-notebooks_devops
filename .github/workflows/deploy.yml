@@ -41,12 +41,13 @@ jobs:
           python -m pip install hatchling hatch-jupyter-builder editables build
           python -m pip install -r requirements.txt
 
-      - name: Build custom JupyterLab extension
+      - name: Build and install custom JupyterLab extension wheel
         run: |
           cd extension
           npm install
           npm run build
-          pip install --no-build-isolation -e .
+          python -m build --wheel
+          pip install dist/*.whl
 
       - name: Build the JupyterLite site
         run: |
