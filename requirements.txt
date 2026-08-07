@@ -68,3 +68,12 @@ jupyterlite-p5-kernel==0.3.0
 # JupyterLab renderers
 jupyterlab-fasta>=3.3.0,<4
 jupyterlab-geojson>=3.4.0,<4
+
+
+############333
+
+jupyterlite-core>=0.3.0
+jupyterlite-pyodide-kernel
+jupyterlab>=4.0.0
+
+
