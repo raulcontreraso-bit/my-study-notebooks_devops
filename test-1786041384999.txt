@@ -1,2 +1,0 @@
-Hello from Cloudflare Worker
-Created at 2026-08-06T18:36:24.999Z
