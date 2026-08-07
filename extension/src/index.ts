@@ -9,7 +9,7 @@ import { DocumentRegistry } from '@jupyterlab/docregistry';
 import { IDisposable, DisposableDelegate } from '@lumino/disposable';
 
 // REPLACE THIS with your actual Cloudflare Worker base URL (no trailing slash)
-const WORKER_BASE_URL = 'https://jupyterlite-sync.raulcontreraso.workers.dev';
+const WORKER_BASE_URL = 'https://YOUR_WORKER_URL.workers.dev';
 
 /**
  * A notebook widget extension that adds a button to the toolbar.
@@ -36,7 +36,7 @@ export class GitHubSyncButtonExtension
         button.node.textContent = 'Syncing...';
 
         try {
-          // 3. Send payload to the specific '/save-notebook' endpoint
+          // 3. Send payload to your worker's '/save-notebook' route
           const response = await fetch(`${WORKER_BASE_URL}/save-notebook`, {
             method: 'POST',
             headers: {
