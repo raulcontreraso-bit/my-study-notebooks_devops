@@ -9,11 +9,8 @@ import { DocumentRegistry } from '@jupyterlab/docregistry';
 import { IDisposable, DisposableDelegate } from '@lumino/disposable';
 
 // REPLACE THIS with your actual Cloudflare Worker base URL (no trailing slash)
-const WORKER_BASE_URL = 'https://YOUR_WORKER_URL.workers.dev';
+const WORKER_BASE_URL = 'https://jupyterlite-sync.raulcontreraso.workers.dev/';
 
-/**
- * A notebook widget extension that adds a button to the toolbar.
- */
 export class GitHubSyncButtonExtension
   implements DocumentRegistry.IWidgetExtension<NotebookPanel, INotebookModel>
 {
@@ -21,22 +18,18 @@ export class GitHubSyncButtonExtension
     panel: NotebookPanel,
     context: DocumentRegistry.IContext<INotebookModel>
   ): IDisposable {
-    // Create the toolbar button
     const button = new ToolbarButton({
       className: 'github-sync-button',
       label: 'Save to GitHub',
       onClick: async () => {
-        // 1. Ensure the notebook is fully saved locally to the browser first
         await context.save();
 
-        // 2. Extract the JSON object of the notebook to match the Worker's expectation
         const content = context.model.toJSON();
         const filename = context.path.split('/').pop() || 'untitled.ipynb';
 
         button.node.textContent = 'Syncing...';
 
         try {
-          // 3. Send payload to your worker's '/save-notebook' route
           const response = await fetch(`${WORKER_BASE_URL}/save-notebook`, {
             method: 'POST',
             headers: {
@@ -65,25 +58,19 @@ export class GitHubSyncButtonExtension
       tooltip: 'Commit this notebook directly to your GitHub repository'
     });
 
-    // Add the button to the notebook toolbar at position 10
     panel.toolbar.insertItem(10, 'githubSync', button);
     
-    // Register the disposal of the button to prevent memory leaks
     return new DisposableDelegate(() => {
       button.dispose();
     });
   }
 }
 
-/**
- * Initialization data for the jupyterlite-github-sync extension.
- */
 const plugin: JupyterFrontEndPlugin<void> = {
   id: 'jupyterlite-github-sync:plugin',
   autoStart: true,
   requires: [INotebookTracker],
   activate: (app: JupyterFrontEnd, tracker: INotebookTracker) => {
-    // Register the button extension to the notebook document registry
     app.docRegistry.addWidgetExtension('Notebook', new GitHubSyncButtonExtension());
   }
 };
