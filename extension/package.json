@@ -27,7 +27,7 @@
     "@lumino/disposable": "^2.0.0"
   },
   "devDependencies": {
-    "@jupyter/builder": "^4.0.0",
+    "@jupyter/builder": "^1.0.0",
     "typescript": "~5.0.0"
   }
 }
