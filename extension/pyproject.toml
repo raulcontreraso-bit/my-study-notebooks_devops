@@ -15,6 +15,9 @@ dependencies = [
 [tool.hatch.build.targets.wheel]
 packages = ["jupyterlite_github_sync"]
 
+[tool.hatch.build.targets.wheel.shared-data]
+"jupyterlite_github_sync/labextension" = "share/jupyter/labextensions/jupyterlite-github-sync"
+
 [tool.hatch.build.hooks.jupyter-builder]
 dependencies = ["hatch-jupyter-builder>=0.5"]
 build-function = "hatch_jupyter_builder.npm_builder"
