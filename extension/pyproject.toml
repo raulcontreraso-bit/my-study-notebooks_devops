@@ -12,6 +12,11 @@ dependencies = [
     "jupyterlab>=4.0.0,<5"
 ]
 
+[tool.hatch.build]
+artifacts = [
+    "jupyterlite_github_sync/labextension"
+]
+
 [tool.hatch.build.targets.wheel]
 packages = ["jupyterlite_github_sync"]
 
