@@ -49,6 +49,7 @@ jobs:
           jupyter-builder build .
           python -m build --wheel
           pip install dist/*.whl
+          jupyter labextension list
 
       - name: Build the JupyterLite site
         run: |
