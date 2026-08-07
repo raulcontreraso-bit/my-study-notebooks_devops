@@ -22,6 +22,11 @@ ensured-targets = [
     "jupyterlite_github_sync/labextension/package.json"
 ]
 
+[tool.hatch.build.hooks.jupyter-builder.build-kwargs]
+build_cmd = "build"
+npm = ["npm"]
+
 [tool.hatch.build.hooks.jupyter-builder.editable-build-kwargs]
 build_cmd = "build"
 npm = ["npm"]
+
