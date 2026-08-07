@@ -9,7 +9,7 @@ import { DocumentRegistry } from '@jupyterlab/docregistry';
 import { IDisposable, DisposableDelegate } from '@lumino/disposable';
 
 // REPLACE THIS with your actual Cloudflare Worker base URL (no trailing slash)
-const WORKER_BASE_URL = 'https://jupyterlite-sync.raulcontreraso.workers.dev/';
+const WORKER_BASE_URL = 'https://jupyterlite-sync.raulcontreraso.workers.dev';
 
 export class GitHubSyncButtonExtension
   implements DocumentRegistry.IWidgetExtension<NotebookPanel, INotebookModel>
