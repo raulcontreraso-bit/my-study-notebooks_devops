@@ -1,32 +1,31 @@
-{
-  "name": "jupyterlite-github-sync",
-  "version": "0.1.0",
-  "description": "Extension to sync notebooks directly to GitHub.",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "files": [
-    "lib/**/*.{d.ts,js,js.map}",
-    "style/**/*.{css,js,eot,gif,html,jpg,otf,png,svg,ttf,woff,woff2}"
-  ],
-  "sideEffects": [
-    "-style/*.css",
-    "style/*.css"
-  ],
-  "jupyterlab": {
-    "extension": true,
-    "outputDir": "jupyterlite_github_sync/labextension"
-  },
-  "scripts": {
-    "build": "tsc --build",
-    "clean": "tsc --build --clean"
-  },
-  "dependencies": {
-    "@jupyterlab/application": "^4.0.0",
-    "@jupyterlab/apputils": "^4.0.0",
-    "@jupyterlab/notebook": "^4.0.0",
-    "@lumino/disposable": "^2.0.0"
-  },
-  "devDependencies": {
-    "typescript": "~5.0.0"
-  }
-}
+[build-system]
+requires = ["hatchling>=1.5.0", "hatch-jupyter-builder>=0.5"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jupyterlite-github-sync"
+version = "0.1.0"
+description = "Extension to sync notebooks directly to GitHub."
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "jupyterlab>=4.0.0,<5"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["jupyterlite_github_sync"]
+
+[tool.hatch.build.hooks.jupyter-builder]
+dependencies = ["hatch-jupyter-builder>=0.5"]
+build-function = "hatch_jupyter_builder.npm_builder"
+ensured-targets = [
+    "jupyterlite_github_sync/labextension/package.json"
+]
+
+[tool.hatch.build.hooks.jupyter-builder.build-kwargs]
+build_cmd = "build"
+npm = ["npm"]
+
+[tool.hatch.build.hooks.jupyter-builder.editable-build-kwargs]
+build_cmd = "build"
+npm = ["npm"]
