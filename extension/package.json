@@ -1,25 +1,32 @@
 {
   "name": "jupyterlite-github-sync",
   "version": "0.1.0",
-  "description": "JupyterLite extension to sync notebooks to GitHub via Cloudflare Worker",
+  "description": "Extension to sync notebooks directly to GitHub.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
-    "lib/**/*.{d.ts,js,js.map}"
+    "lib/**/*.{d.ts,js,js.map}",
+    "style/**/*.{css,js,eot,gif,html,jpg,otf,png,svg,ttf,woff,woff2}"
   ],
+  "sideEffects": [
+    "-style/*.css",
+    "style/*.css"
+  ],
+  "jupyterlab": {
+    "extension": true,
+    "outputDir": "jupyterlite_github_sync/labextension"
+  },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc --build",
+    "clean": "tsc --build --clean"
   },
   "dependencies": {
     "@jupyterlab/application": "^4.0.0",
     "@jupyterlab/apputils": "^4.0.0",
     "@jupyterlab/notebook": "^4.0.0",
-    "@lumino/widgets": "^2.0.0"
+    "@lumino/disposable": "^2.0.0"
   },
   "devDependencies": {
     "typescript": "~5.0.0"
-  },
-  "jupyterlab": {
-    "extension": true
   }
 }
