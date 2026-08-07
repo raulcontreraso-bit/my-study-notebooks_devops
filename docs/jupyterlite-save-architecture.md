@@ -1,6 +1,5 @@
 
-```
-Current:
+``` Current:
 Notebook
    ↓
 Browser Storage
@@ -10,5 +9,4 @@ Notebook
    ↓
 Worker
    ↓
-GitHub
-```
+GitHub ```
