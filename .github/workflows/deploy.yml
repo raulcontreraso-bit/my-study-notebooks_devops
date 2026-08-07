@@ -15,7 +15,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: 'pages'
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -38,7 +38,7 @@ jobs:
       - name: Install Python build tools and dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install hatchling hatch-jupyter-builder
+          python -m pip install hatchling hatch-jupyter-builder editables build
           python -m pip install -r requirements.txt
 
       - name: Build custom JupyterLab extension
@@ -46,7 +46,8 @@ jobs:
           cd extension
           npm install
           npm run build
-          pip install --no-build-isolation -e .
+          python -m build
+          pip install dist/*.whl
 
       - name: Build the JupyterLite site
         run: |
