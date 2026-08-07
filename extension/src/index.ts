@@ -9,7 +9,7 @@ import { DocumentRegistry } from '@jupyterlab/docregistry';
 import { IDisposable, DisposableDelegate } from '@lumino/disposable';
 
 // REPLACE THIS with your actual Cloudflare Worker base URL (no trailing slash)
-const WORKER_BASE_URL = 'https://YOUR_WORKER_URL.workers.dev';
+const WORKER_BASE_URL = 'https://jupyterlite-sync.raulcontreraso.workers.dev';
 
 /**
  * A notebook widget extension that adds a button to the toolbar.
