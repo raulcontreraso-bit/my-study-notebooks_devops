@@ -3,23 +3,24 @@ import {
   JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 
-import { INotebookTracker } from '@jupyterlab/notebook';
+import { INotebookTracker, NotebookPanel, INotebookModel } from '@jupyterlab/notebook';
 import { ToolbarButton } from '@jupyterlab/apputils';
 import { DocumentRegistry } from '@jupyterlab/docregistry';
+import { IDisposable, DisposableDelegate } from '@lumino/disposable';
 
 // REPLACE THIS with your actual Cloudflare Worker base URL (no trailing slash)
-const WORKER_BASE_URL = 'https://jupyterlite-sync.raulcontreraso.workers.dev';
+const WORKER_BASE_URL = 'https://YOUR_WORKER_URL.workers.dev';
 
 /**
  * A notebook widget extension that adds a button to the toolbar.
  */
 export class GitHubSyncButtonExtension
-  implements DocumentRegistry.IWidgetExtension<any, any>
+  implements DocumentRegistry.IWidgetExtension<NotebookPanel, INotebookModel>
 {
   createNew(
-    panel: any,
-    context: DocumentRegistry.IContext<any>
-  ): import('@lumino/disposable').IDisposable {
+    panel: NotebookPanel,
+    context: DocumentRegistry.IContext<INotebookModel>
+  ): IDisposable {
     // Create the toolbar button
     const button = new ToolbarButton({
       className: 'github-sync-button',
@@ -64,9 +65,13 @@ export class GitHubSyncButtonExtension
       tooltip: 'Commit this notebook directly to your GitHub repository'
     });
 
-    // Add the button to the notebook toolbar
+    // Add the button to the notebook toolbar at position 10
     panel.toolbar.insertItem(10, 'githubSync', button);
-    return button;
+    
+    // Register the disposal of the button to prevent memory leaks
+    return new DisposableDelegate(() => {
+      button.dispose();
+    });
   }
 }
 
