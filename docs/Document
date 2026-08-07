@@ -62,3 +62,11 @@ Worker
 GitHub API
  ↓
 Repository Commit
+
+
+
+JupyterLite
+     │
+     ├── Save Locally ✅
+     │
+     └── Save to GitHub ❌
