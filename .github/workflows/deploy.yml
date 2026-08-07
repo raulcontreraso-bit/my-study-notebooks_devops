@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feature/github-sync
   pull_request:
     branches:
       - '*'
@@ -57,7 +58,7 @@ jobs:
 
   deploy:
     needs: build
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/feature/github-sync'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
