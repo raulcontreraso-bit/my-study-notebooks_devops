@@ -14,3 +14,7 @@ dependencies = [
 
 [tool.hatch.build.targets.wheel.shared-data]
 "lib" = "share/jupyter/labextensions/jupyterlite-github-sync"
+
+git add extension/pyproject.toml
+git commit -m "fix: configure hatchling build target for extension"
+git push origin <your-branch-name>
