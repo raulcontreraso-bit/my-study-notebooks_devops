@@ -6,13 +6,9 @@
       "jupyterlab-kernel-spy",
       "jupyterlab-tour"
     ],
-
     "githubSync": {
       "enabled": true,
-      "workerEndpoint": "https://jupyterlite-sync.raulcontreraso.workers.dev/save-notebook",
-      "repository": "raulcontreraso-bit/my-study-notebooks_devops",
-      "branch": "feature/github-sync",
-      "folder": "content/notebooks"
+      "workerEndpoint": "https://jupyterlite-sync.raulcontreraso.workers.dev/save-notebook"
     }
   }
 }
